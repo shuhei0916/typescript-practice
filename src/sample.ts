@@ -1,6 +1,36 @@
 export const hoge = () => {
     console.log("hogehoge");
     console.log(reverseArray(["a", "b", "c"], true));
+    
+    const user = {
+        name: "shuhei",
+        age: 26,
+        email: "shuheiito.stc@gmail.com",
+    }
+
+    interface UserProps {
+        name: string,
+        age: number,
+        email: string
+    }
+    interface AdminUser extends UserProps{
+        role: string; 
+    }
+
+    const createAccount  = (accountInfo: UserProps) => {
+        //
+    }
+
+    createAccount({
+        name: "shuhei",
+        age: 26,
+        email: "shuheiito.stc@gmail.com",
+    })
+
+     class User {
+
+    }
+
 };
 
 
