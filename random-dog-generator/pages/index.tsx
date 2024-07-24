@@ -1,5 +1,11 @@
-import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { GetServerSideProps, NextPage } from "next";
+import { useState, useEffect } from "react";
+
+// getServerSidePropsから渡されるpropsの型
+type Props = {
+    initialImageUrl: string;
+  };
+   
 
 const IndexPage: NextPage = () => {
     // useStateを使って状態を定義する
