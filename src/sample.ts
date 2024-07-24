@@ -27,7 +27,7 @@ export const hoge = () => {
         email: "shuheiito.stc@gmail.com",
     })
 
-     class User {
+    class User {
 
     }
 

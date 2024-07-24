@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -14,7 +14,8 @@ function App() {
 }
 
 function LikeButton() {
-  return <span>いいねボタン予定地</span>
+  const [count, setCount] = useState(999);
+  return <span className="likeButton">♥ {count}</span>
 }
 
 export default App;
