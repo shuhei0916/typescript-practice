@@ -15,7 +15,10 @@ function App() {
 
 function LikeButton() {
   const [count, setCount] = useState(999);
-  return <span className="likeButton">♥ {count}</span>
+  const handleClick = () => {
+    setCount(count + 1);
+  }
+  return <span className="likeButton" onClick={handleClick}>♥ {count}</span>
 }
 
 export default App;
