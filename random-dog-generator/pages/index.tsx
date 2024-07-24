@@ -12,8 +12,20 @@ const IndexPage: NextPage = () => {
             setLoading(false); // ローディング状態を更新する
         });
     }, []);
+    const handleClick = async () => {
+        setLoading(true);
+        const newImage = await fetchImage();
+        setImageUrl(newImage.url);
+        setLoading(false);
+    };
+
     //ローディング中でなければ、画像を表示する
-    return <div>{ loading || <img src={imageUrl} />}</div>;
+    return (
+        <div>
+            <button onClick={handleClick}>ほかのイッヌも観る</button>
+            <div>{loading || <img src={imageUrl} />}</div>
+        </div>
+    );
 };
 export default IndexPage;
 
