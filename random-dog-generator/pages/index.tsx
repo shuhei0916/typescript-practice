@@ -5,12 +5,11 @@ import { useState, useEffect } from "react";
 type Props = {
     initialImageUrl: string;
   };
-   
 
-const IndexPage: NextPage = () => {
+const IndexPage: NextPage<Props> = ({ initialImageUrl }) => {
     // useStateを使って状態を定義する
-    const [imageUrl, setImageUrl] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [imageUrl, setImageUrl] = useState(initialImageUrl);
+    const [loading, setLoading] = useState(false);
     // マウント時に画像を読み込む宣言
     useEffect(() => {
         fetchImage().then((newImage) => {
@@ -39,6 +38,16 @@ export default IndexPage;
 // export default function IndexPage(): ReactElement<any, any> | null {
 //     return <div>猫画像予定地</div>;
 // }
+
+// サーバーサイドで実行する処理
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+    const image = await fetchImage();
+    return {
+      props: {
+        initialImageUrl: image.url,
+      },
+    };
+  };
 
 type Image = {
     url: string;
