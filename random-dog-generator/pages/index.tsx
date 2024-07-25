@@ -1,10 +1,12 @@
 import { GetServerSideProps, NextPage } from "next";
 import { useState, useEffect } from "react";
+import styles from "./index.module.css";
+import { SUPPORTED_NATIVE_MODULES } from "next/dist/build/webpack/plugins/middleware-plugin";
 
 // getServerSidePropsから渡されるpropsの型
 type Props = {
     initialImageUrl: string;
-  };
+};
 
 const IndexPage: NextPage<Props> = ({ initialImageUrl }) => {
     // useStateを使って状態を定義する
@@ -26,9 +28,13 @@ const IndexPage: NextPage<Props> = ({ initialImageUrl }) => {
 
     //ローディング中でなければ、画像を表示する
     return (
-        <div>
-            <button onClick={handleClick}>ほかのイッヌも観る</button>
-            <div>{loading || <img src={imageUrl} />}</div>
+        <div className={styles.page}>
+            <button onClick={handleClick} className={styles.button}>
+                ほかのイッヌも観る
+            </button>
+            <div className={styles.frame}>
+                {loading || <img src={imageUrl} className={styles.img} />}
+            </div>
         </div>
     );
 };
@@ -43,11 +49,11 @@ export default IndexPage;
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
     const image = await fetchImage();
     return {
-      props: {
-        initialImageUrl: image.url,
-      },
+        props: {
+            initialImageUrl: image.url,
+        },
     };
-  };
+};
 
 type Image = {
     url: string;
